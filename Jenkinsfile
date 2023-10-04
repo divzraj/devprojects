@@ -77,7 +77,7 @@ pipeline{
             repository: 'projectstores',
             credentialsId: 'nexuslogin',
             artifacts: [
-            [artifactId: 'projvpro',
+            [artifactId: 'projvpro1',
              classifier: '',
              file: 'target/vproj-v2.war',
              type: 'war']

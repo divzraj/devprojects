@@ -79,7 +79,7 @@ pipeline{
             artifacts: [
             [artifactId: 'projvpro',
              classifier: '',
-             file: 'target/*.war',
+             file: 'target/vprofile-v2.war',
              type: 'war']
         ]
      )

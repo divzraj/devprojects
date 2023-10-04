@@ -13,7 +13,7 @@ pipeline{
     stages{
         stage("fetch form git"){
             steps{
-                git branch: "SCA-VP", url: "https://github.com/divzraj/devprojects.git"
+                git branch: "docker", url: "https://github.com/divzraj/devprojects.git"
             }
 
         }

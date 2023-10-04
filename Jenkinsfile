@@ -4,6 +4,11 @@ pipeline{
         jdk "java8"
         maven "mvn"
     }
+    environment{
+        regioncreds = "ecr:us-east-1:awscreds"
+        Imagename = "587939292877.dkr.ecr.us-east-1.amazonaws.com/myprojimg"
+        vproecrregistry = "https://587939292877.dkr.ecr.us-east-1.amazonaws.com"
+    }
 
     stages{
         stage("fetch form git"){
@@ -83,6 +88,25 @@ pipeline{
              type: 'war']
         ]
      )
+        }
+    }
+
+    stage('Image build'){
+        steps{
+            script{
+                Dockerimage = docker.build( "${Imagename}" + ":$BUILD_NUMBER" , "./Docker-files/app/" )
+            }
+        }
+    }
+
+    stage("upload image to registry in aws"){
+        steps{
+            script{
+                docker.withRegistry( "${vproecrregistry}", "${regioncreds}" ) {
+                        // Push the Docker image to ECR
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push("latest")
+            }
         }
     }
 }

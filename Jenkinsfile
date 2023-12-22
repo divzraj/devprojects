@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-	/*stage('INTEGRATION TEST'){
+	stage('INTEGRATION TEST'){
             steps {
                 sh 'mvn verify -DskipUnitTests'
             }
@@ -42,7 +42,7 @@ pipeline {
                 }
             }
         }
-        stage('CODE ANALYSIS with SONARQUBE') {
+       /* stage('CODE ANALYSIS with SONARQUBE') {
           
 		  environment {
              scannerHome = tool 'sonarscanner4'
